@@ -25,8 +25,11 @@ async function autoMerge() {
     const hasAutomerge = labels.some(label => label.name === labelName);
 
     if (hasAutomerge) {
-      if (reviews.data.length <= 0)
-        throw Error("You need to get other's review!");
+      if (reviews.data.length <= 0) {
+        core.setFailed(error.message);
+        return;
+      }
+      // throw Error("You need to get other's review!");
       else
         octokit.pulls.merge({
           ...github.context.repo,
