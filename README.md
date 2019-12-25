@@ -1,7 +1,10 @@
 # Automatically Merge PR Actions
 A GitHub Action to merge PR Autometically.
+
 If you put a specific label, the action will then check the number of reviews in PR.
+
 If the number of reviews is more than one, the PR is automatically merged.
+
 If you put other lables, the action will be passed.
 
 <!-- Screenshot -->
