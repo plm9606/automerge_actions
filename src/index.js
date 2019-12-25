@@ -4,10 +4,12 @@ const { Toolkit } = require("actions-toolkit");
 
 async function autoMerge() {
   try {
+    let tools = new Toolkit();
     const labelName = core.getInput("label-name");
     // const myToken = core.getInput("github-token");
-    const myToken = toolkit.secrets.get("TOKEN");
-    const tools = new Toolkit({ secrets: [myToken] });
+    const myToken = tools.secrets.get("TOKEN");
+    console.log(`token : ${myToken}`);
+    tools = new Toolkit({ secrets: [myToken] });
 
     console.log(`github.context.repo: ${JSON.stringify(github.context.repo)}`);
     console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
