@@ -12,11 +12,11 @@ async function autoMerge() {
     const ref = tools.context.ref;
     const pull_number = Number(ref.split("/")[2]);
     const reviews = await tools.github.pulls.listReviews({
-      ...context.repo,
+      ...github.context.repo,
       pull_number
     });
     const pr = await tools.github.pulls.get({
-      ...context.repo,
+      ...github.context.repo,
       pull_number
     });
 
@@ -28,7 +28,7 @@ async function autoMerge() {
       if (reviews.data.length <= 0) throw "### You need to get other's review!";
       else
         tools.github.pulls.merge({
-          ...context.repo,
+          ...github.context.repo,
           pull_number
         });
     }
