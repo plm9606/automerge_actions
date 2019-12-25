@@ -7,15 +7,15 @@ async function autoMerge() {
   try {
     const labelName = core.getInput("label-name");
 
-    console.log(`context.repo: \n${JSON.stringify(github.context.repo)}`);
+    console.log(`context.repo: ${JSON.stringify(context.repo)}`);
     console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
     const ref = tools.context.ref;
     const pull_number = Number(ref.split("/")[2]);
-    const reviews = await github.pulls.listReviews({
+    const reviews = await tools.github.pulls.listReviews({
       ...context.repo,
       pull_number
     });
-    const pr = await github.pulls.get({
+    const pr = await tools.github.pulls.get({
       ...context.repo,
       pull_number
     });
@@ -27,7 +27,7 @@ async function autoMerge() {
     if (hasAutomerge) {
       if (reviews.data.length <= 0) throw "### You need to get other's review!";
       else
-        github.pulls.merge({
+        tools.github.pulls.merge({
           ...context.repo,
           pull_number
         });
