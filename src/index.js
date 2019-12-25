@@ -30,8 +30,10 @@ async function autoMerge() {
           ...github.context.repo,
           pull_number
         });
+        core.info(`Success Merge PR!`);
       } else throw Error("You need to get other's review!");
     }
+    core.info(`You don't labeled auto merge label::"${labelName}"`);
   } catch (error) {
     core.setFailed(error.message);
   }
