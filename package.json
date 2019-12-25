@@ -1,0 +1,23 @@
+{
+  "name": "automerge_actions",
+  "version": "1.0.0",
+  "description": "자동머지를 위한 GitHub Actions 입니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plm9606/automerge_actions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plm9606/automerge_actions/issues"
+  },
+  "homepage": "https://github.com/plm9606/automerge_actions#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/github": "^2.0.0"
+  }
+}

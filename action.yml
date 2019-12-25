@@ -1,12 +1,10 @@
-name: 'Hello World'               # action 이름
-description: 'Greet someone'      # 간단한 설명
+name: "Hello World" # action 이름
+description: "Greet someone" # 간단한 설명
 inputs:
-  who-to-greet:                   # id of input    
-    description: 'Who to greet'
+  who-to-greet: # id of input
+    description: "Who to greet"
     required: true
-    default: 'World'
+    default: "World"
 runs:
-  using: 'docker'                 # 도커 사용 명시
-  image: 'Dockerfile'             # Dockerfile을 이용하여 이미지 생성
-  args:                           # docker run 에서 넘길 파라미터
-    - ${{ inputs.who-to-greet }}
+  using: "node12"
+  main: "src/index.js"
