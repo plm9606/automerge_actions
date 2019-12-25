@@ -2,9 +2,12 @@ name: "Hello World" # action 이름
 description: "Greet someone" # 간단한 설명
 inputs:
   label-name:
-    description: the PR label name you want to use when merge PR automatically.
+    description: The PR label name you want to use when merge PR automatically.
     required: true
     default: "automerge"
+  github-token:
+    description: GitHub WebHook Secret Token
+    required: true
 runs:
   using: "node12"
   main: "src/index.js"

@@ -1,11 +1,13 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 const { Toolkit } = require("actions-toolkit");
-const tools = new Toolkit();
 
 async function autoMerge() {
   try {
     const labelName = core.getInput("label-name");
+    const myToken = core.getInput("myToken");
+
+    const tools = new Toolkit({ secrets: [myToken] });
 
     console.log(`github.context.repo: ${JSON.stringify(github.context.repo)}`);
     console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
