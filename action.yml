@@ -1,5 +1,5 @@
-name: "PR Automatically Merge" # action 이름
-description: "Autometically Merge PR using custom PR label." # 간단한 설명
+name: "Automatically Merge PR" 
+description: "Autometically Merge PR using custom PR label." 
 inputs:
   label-name:
     description: The PR label name you want to use when merge PR automatically.
@@ -11,3 +11,6 @@ inputs:
 runs:
   using: "node12"
   main: "src/index.js"
+branding:
+  icon: 'git-merge'  
+  color: 'orange'
