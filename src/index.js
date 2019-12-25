@@ -9,11 +9,9 @@ async function autoMerge() {
     const myToken = core.getInput("github-token");
     const octokit = new github.GitHub(myToken);
 
-    console.log(`github.context.repo: ${JSON.stringify(github.context.repo)}`);
-    console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
-
     const ref = tools.context.ref;
     const pull_number = Number(ref.split("/")[2]);
+
     const reviews = await octokit.pulls.listReviews({
       ...github.context.repo,
       pull_number
@@ -25,11 +23,10 @@ async function autoMerge() {
 
     const labels = pr.data.labels;
     const hasAutomerge = labels.some(label => label.name === labelName);
-    console.log("result is", hasAutomerge);
-    console.log(`review.len: ${JSON.stringify(reviews.data)}`);
+
     if (hasAutomerge) {
       if (reviews.data.length <= 0)
-        throw Error("### You need to get other's review!");
+        throw Error("You need to get other's review!");
       else
         octokit.pulls.merge({
           ...github.context.repo,
