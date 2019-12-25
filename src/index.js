@@ -4,15 +4,20 @@ const { Toolkit } = require("actions-toolkit");
 
 async function autoMerge() {
   try {
-    let tools = new Toolkit();
+    // let tools = new Toolkit();
     const labelName = core.getInput("label-name");
-    // const myToken = core.getInput("github-token");
-    const myToken = tools.secrets.get("TOKEN");
+    const myToken = core.getInput("github-token");
+    const octokit = new github.GitHub(myToken);
+
     console.log(`token : ${myToken}`);
     tools = new Toolkit({ secrets: [myToken] });
 
     console.log(`github.context.repo: ${JSON.stringify(github.context.repo)}`);
     console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
+    console.log(
+      ` octokit.context.ref: \n${JSON.stringify(octokit.context.ref)}`
+    );
+
     const ref = tools.context.ref;
     const pull_number = Number(ref.split("/")[2]);
     const reviews = await tools.github.pulls.listReviews({
