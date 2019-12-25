@@ -5,7 +5,7 @@ const { Toolkit } = require("actions-toolkit");
 async function autoMerge() {
   try {
     const labelName = core.getInput("label-name");
-    const myToken = core.getInput("myToken");
+    const myToken = core.getInput("github-token");
 
     const tools = new Toolkit({ secrets: [myToken] });
 
