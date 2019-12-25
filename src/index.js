@@ -9,7 +9,7 @@ async function autoMerge() {
 
     console.log(`context.repo: \n${JSON.stringify(github.context.repo)}`);
     console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
-    const ref = github.ref;
+    const ref = tools.context.ref;
     const pull_number = Number(ref.split("/")[2]);
     const reviews = await github.pulls.listReviews({
       ...context.repo,
