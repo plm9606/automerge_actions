@@ -28,7 +28,8 @@ async function autoMerge() {
     console.log("result is", hasAutomerge);
     console.log(`review.len: ${JSON.stringify(reviews.data)}`);
     if (hasAutomerge) {
-      if (reviews.data.length <= 0) throw "### You need to get other's review!";
+      if (reviews.data.length <= 0)
+        throw Error("### You need to get other's review!");
       else
         octokit.pulls.merge({
           ...github.context.repo,
