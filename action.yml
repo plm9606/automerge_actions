@@ -1,10 +1,10 @@
 name: "Hello World" # action 이름
 description: "Greet someone" # 간단한 설명
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  label-name:
+    description: the PR label name you want to use when merge PR automatically.
     required: true
-    default: "World"
+    default: "automerge"
 runs:
   using: "node12"
   main: "src/index.js"

@@ -1,17 +1,37 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput("who-to-greet");
-  console.log(`Hello ${nameToGreet}!`);
-  const time = new Date().toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2);
-  console.log(`The event payload: ${payload}`);
+async function autoMerge() {
+  try {
+    const labelName = core.getInput("label-name");
 
-  console.log(`context.repo: \n${github.context.repo}`);
-} catch (error) {
-  core.setFailed(error.message);
+    console.log(`context.repo: \n${JSON.stringify(github.context.repo)}`);
+    const ref = github.ref;
+    const pull_number = Number(ref.split("/")[2]);
+    const reviews = await github.pulls.listReviews({
+      ...context.repo,
+      pull_number
+    });
+    const pr = await github.pulls.get({
+      ...context.repo,
+      pull_number
+    });
+
+    const labels = pr.data.labels;
+    const hasAutomerge = labels.some(label => label.name === labelName);
+    console.log("result is", hasAutomerge);
+
+    if (hasAutomerge) {
+      if (reviews.data.length <= 0) throw "### You need to get other's review!";
+      else
+        github.pulls.merge({
+          ...context.repo,
+          pull_number
+        });
+    }
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
+
+autoMerge();
