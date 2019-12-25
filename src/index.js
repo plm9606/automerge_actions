@@ -14,9 +14,7 @@ async function autoMerge() {
 
     console.log(`github.context.repo: ${JSON.stringify(github.context.repo)}`);
     // console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
-    console.log(
-      ` octokit.context.ref: \n${JSON.stringify(octokit.context.ref)}`
-    );
+    console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
 
     const ref = tools.context.ref;
     const pull_number = Number(ref.split("/")[2]);
