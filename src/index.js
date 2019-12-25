@@ -20,11 +20,11 @@ async function autoMerge() {
 
     const ref = tools.context.ref;
     const pull_number = Number(ref.split("/")[2]);
-    const reviews = await tools.github.pulls.listReviews({
+    const reviews = await octokit.pulls.listReviews({
       ...github.context.repo,
       pull_number
     });
-    const pr = await tools.github.pulls.get({
+    const pr = await octokit.pulls.get({
       ...github.context.repo,
       pull_number
     });
