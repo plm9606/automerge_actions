@@ -10,7 +10,7 @@ async function autoMerge() {
     const octokit = new github.GitHub(myToken);
 
     console.log(`token : ${myToken}`);
-    tools = new Toolkit({ secrets: [myToken] });
+    // tools = new Toolkit({ secrets: [myToken] });
 
     console.log(`github.context.repo: ${JSON.stringify(github.context.repo)}`);
     console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
