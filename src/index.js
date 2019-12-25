@@ -7,7 +7,7 @@ async function autoMerge() {
   try {
     const labelName = core.getInput("label-name");
 
-    console.log(`context.repo: ${JSON.stringify(context.repo)}`);
+    console.log(`github.context.repo: ${JSON.stringify(github.context.repo)}`);
     console.log(` tools.context.ref: \n${JSON.stringify(tools.context.ref)}`);
     const ref = tools.context.ref;
     const pull_number = Number(ref.split("/")[2]);
