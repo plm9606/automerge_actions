@@ -9,6 +9,10 @@ inputs:
     description: Number of reviewers needed to automatically merge the PR.
     required: false
     default: "1"
+  merge-method:
+    description: Merge method, one between "merge", "squash" or "rebase"
+    required: false
+    default: "merge"
   github-token:
     description: GitHub WebHook Secret Token
     required: true

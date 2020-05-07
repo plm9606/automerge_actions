@@ -18,13 +18,14 @@ Create a `.github/workflows/${YOUR_WORKFLOW_NAME}.yml` file in your GitHub repo 
 
 ```yml
 name: Check PR can be merged
+
 on:
   pull_request:
     types: [labeled]
-    branches:
-      - develop/* # The branch you want to automatically merge pull request
+    branches: [dev]
+
 jobs:
-  Run Actions:
+  automerge:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically Merge PR
@@ -34,6 +35,8 @@ jobs:
           label-name:
           # The number of reviewers to automatically merge. Default is 1.
           reviewers-number:
+          # The merge method, one between "merge", "squash" or "rebase". Default is "merge".
+          merge-method:
           # GitHub WebHook Secret Token
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -52,7 +55,13 @@ Not required, default is `1`.
 
 The number of reviewers the action uses to merge, after checking the label.
 
-### 3. github-token
+### 3. merge-method
+
+Not required, default is `merge`.
+
+The PR merge method, one between "merge", "squash" or "rebase".
+
+### 4. github-token
 
 Required.
 You have to get `Personal access token` from GitHub. And create GitHub secrets in your repo.([How to?](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets))
@@ -61,11 +70,11 @@ The secret name may be different from the example above.
 
 ## Log Messages
 
-`Success Merge PR!`: Success merge automatically.
+`PR ${pull_number} merged successfully!`: Success merge automatically.
 
-`You don't labeled auto merge label::"${labelName}"`: If you intend to merge automatically, check the merge label name.
+`Missing label "${labelName}" to merge`: If you intend to merge automatically, check the merge label name.
 
-`You need to get other's review!` : Error. You must receive PR review(s).
+`The PR needs at least "${reviewersNumber}" reviews` : Error. You must receive PR review(s).
 
 # 자동 머지 Actions
 
@@ -83,13 +92,14 @@ action에서 설정하지 않은 라벨을 달게되면 스킵됩니다.
 
 ```yml
 name: Check PR can be merged
+
 on:
   pull_request:
     types: [labeled]
-    branches:
-      - develop/* # 해당 기능을 사용하고 싶은 브랜치를 정의합니다
+    branches: [dev]
+
 jobs:
-  Run Actions:
+  automerge:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically Merge PR
@@ -99,6 +109,8 @@ jobs:
           label-name:
           # 최소 리뷰어 수를 지정할 수 있습니다. 기본은 1명입니다.
           reviewers-number:
+          # @todo in korean.
+          merge-method:
           # GitHub WebHook Secret Token
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -117,7 +129,13 @@ Not required, default is `1`.
 
 리뷰어의 수를 지정합니다.
 
-### 3. github-token
+### 3. merge-method
+
+Not required, default is `merge`.
+
+@todo in korean.
+
+### 4. github-token
 
 **Required.**
 
@@ -125,8 +143,8 @@ Not required, default is `1`.
 
 ## Log Messages
 
-`Success Merge PR!`: 성공적으로 머지가 되었습니다
+`PR ${pull_number} merged successfully!`: 성공적으로 머지가 되었습니다
 
-`You don't labeled auto merge label::"${labelName}"`: 머지 라벨로 설정한 라벨이 달려있지 않을 경우 나타납니다. 해당 액션을 사용하고자 한 것이었다면 라벨을 달아주어야 합니다.
+`Missing label "${labelName}" to merge`: 머지 라벨로 설정한 라벨이 달려있지 않을 경우 나타납니다. 해당 액션을 사용하고자 한 것이었다면 라벨을 달아주어야 합니다.
 
-`You need to get other's review!` : 리뷰수가 부족합니다.
+`The PR needs at least "${reviewersNumber}" reviews` : 리뷰수가 부족합니다.
