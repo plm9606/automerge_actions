@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically Merge PR
-        uses: plm9606/automerge_actions@1.1.0
+        uses: plm9606/automerge_actions@1.2.0
         with:
           # The label name to automatically merge. Default is "automerge".
           label-name:
@@ -103,7 +103,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically Merge PR
-        uses: plm9606/automerge_actions@1.1.0
+        uses: plm9606/automerge_actions@1.2.0
         with:
           # 이벤트를 트리거하고 싶은 라벨 이름을 설정합니다. 기본 이름은 "automerge" 입니다.
           label-name:
