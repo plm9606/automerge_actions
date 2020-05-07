@@ -6,6 +6,7 @@ const tools = new Toolkit();
 async function autoMerge() {
   try {
     const labelName = core.getInput("label-name");
+    const reviewersNumber = core.getInput("reviewers-number");
     const myToken = core.getInput("github-token");
     const octokit = new github.GitHub(myToken);
 
@@ -25,7 +26,7 @@ async function autoMerge() {
     const hasAutomerge = labels.some(label => label.name === labelName);
 
     if (hasAutomerge) {
-      if (reviews.data.length > 0) {
+      if (reviews.data.length >= +reviewersNumber) {
         octokit.pulls.merge({
           ...github.context.repo,
           pull_number

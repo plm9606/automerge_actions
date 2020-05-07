@@ -3,8 +3,12 @@ description: "Autometically Merge PR using custom PR label."
 inputs:
   label-name:
     description: The PR label name you want to use when merge PR automatically.
-    required: true
+    required: false
     default: "automerge"
+  reviewers-number:
+    description: Number of reviewers needed to automatically merge the PR.
+    required: false
+    default: "1"
   github-token:
     description: GitHub WebHook Secret Token
     required: true
