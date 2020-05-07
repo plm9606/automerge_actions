@@ -107,7 +107,7 @@ jobs:
           label-name:
           # 최소 리뷰어 수를 지정할 수 있습니다. 기본은 1명입니다.
           reviewers-number:
-          # The merge method ("merge", "squash", "rebase"). Default is "merge"
+          # "merge", "squash", "rebase" 중 한가지를 선택할 수 있습니다. 기본값은 "merge" 입니다
           merge-method:
           # GitHub WebHook Secret Token
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -131,7 +131,7 @@ Not required, default is `1`.
 
 Not required, default is `merge`.
 
-The merge method: merge, squash or rebase.
+선택 가능한 메소드: merge, squash, rebase.
 
 ### 4. github-token
 
