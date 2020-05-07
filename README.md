@@ -28,12 +28,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically Merge PR
-        uses: plm9606/automerge_actions@1.1.0
+        uses: plm9606/automerge_actions@1.2.0
         with:
           # The label name to automatically merge. Default is "automerge".
           label-name:
           # The number of reviewers to automatically merge. Default is 1.
           reviewers-number:
+          # The merge method ("merge", "squash", "rebase"). Default is "merge"
+          merge-method:
           # GitHub WebHook Secret Token
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -52,7 +54,13 @@ Not required, default is `1`.
 
 The number of reviewers the action uses to merge, after checking the label.
 
-### 3. github-token
+### 3. merge-method
+
+Not required, default is `merge`.
+
+The merge method: merge, squash or rebase.
+
+### 4. github-token
 
 Required.
 You have to get `Personal access token` from GitHub. And create GitHub secrets in your repo.([How to?](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets))
@@ -93,12 +101,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Automatically Merge PR
-        uses: plm9606/automerge_actions@1.1.0
+        uses: plm9606/automerge_actions@1.2.0
         with:
           # 이벤트를 트리거하고 싶은 라벨 이름을 설정합니다. 기본 이름은 "automerge" 입니다.
           label-name:
           # 최소 리뷰어 수를 지정할 수 있습니다. 기본은 1명입니다.
           reviewers-number:
+          # The merge method ("merge", "squash", "rebase"). Default is "merge"
+          merge-method:
           # GitHub WebHook Secret Token
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -117,7 +127,13 @@ Not required, default is `1`.
 
 리뷰어의 수를 지정합니다.
 
-### 3. github-token
+### 3. merge-method
+
+Not required, default is `merge`.
+
+The merge method: merge, squash or rebase.
+
+### 4. github-token
 
 **Required.**
 

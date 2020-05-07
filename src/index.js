@@ -7,6 +7,7 @@ async function autoMerge() {
   try {
     const labelName = core.getInput("label-name");
     const reviewersNumber = core.getInput("reviewers-number");
+    const merge_method = core.getInput("merge-method");
     const myToken = core.getInput("github-token");
     const octokit = new github.GitHub(myToken);
 
@@ -29,7 +30,8 @@ async function autoMerge() {
       if (reviews.data.length >= +reviewersNumber) {
         octokit.pulls.merge({
           ...github.context.repo,
-          pull_number
+          pull_number,
+          merge_method
         });
         core.info(`Success Merge PR!`);
       } else throw Error("You need to get other's review!");
