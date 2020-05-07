@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/plm9606/automerge_actions#readme",
   "dependencies": {
-    "@actions/core": "^1.2.0",
-    "@actions/github": "^2.0.0",
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^2.1.1",
     "actions-toolkit": "^2.2.0"
   }
 }
