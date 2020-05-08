@@ -36,6 +36,8 @@ jobs:
           reviewers-number:
           # The merge method ("merge", "squash", "rebase"). Default is "merge"
           merge-method:
+          # Let the bot delete the merged branch. true or false.
+          auto-delete:
           # GitHub WebHook Secret Token
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -60,7 +62,13 @@ Not required, default is `merge`.
 
 The merge method: merge, squash or rebase.
 
-### 4. github-token
+### 4. auto-delete
+
+Not required, default is `false`.
+
+If you define `true`, the bot will delete the merged branch.
+
+### 5. github-token
 
 Required.
 You have to get `Personal access token` from GitHub. And create GitHub secrets in your repo.([How to?](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets))
@@ -132,6 +140,12 @@ Not required, default is `1`.
 Not required, default is `merge`.
 
 선택 가능한 메소드: merge, squash, rebase.
+
+### 4. auto-delete
+
+Not required, default is `false`.
+
+`true`로 설정 시 머지 작업 이후 봇이 자동으로 머지된 브랜치를 삭제합니다.
 
 ### 4. github-token
 

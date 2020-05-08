@@ -1,5 +1,5 @@
-name: "Automatically Merge PR" 
-description: "Autometically Merge PR using custom PR label/ PR라벨을 이용해 자동으로 머지작업을 해줍니다" 
+name: "Automatically Merge PR"
+description: "Autometically Merge PR using custom PR label/ PR라벨을 이용해 자동으로 머지작업을 해줍니다"
 inputs:
   label-name:
     description: The PR label name you want to use when merge PR automatically.
@@ -13,6 +13,10 @@ inputs:
     description: The merge method; merge, squash or rebase.
     required: false
     default: "merge"
+  auto-delete:
+    description: Let the bot delete the merged branch. true or false.
+    required: false
+    default: "false"
   github-token:
     description: GitHub WebHook Secret Token
     required: true
@@ -20,5 +24,5 @@ runs:
   using: "node12"
   main: "src/index.js"
 branding:
-  icon: 'git-merge'  
-  color: 'orange'
+  icon: "git-merge"
+  color: "orange"
