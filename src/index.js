@@ -8,7 +8,7 @@ async function autoMerge() {
     const labelName = core.getInput("label-name");
     const reviewersNumber = core.getInput("reviewers-number");
     const merge_method = core.getInput("merge-method");
-    const autoDelete = core.getInput("auto-input");
+    const autoDelete = core.getInput("auto-delete");
     const myToken = core.getInput("github-token");
     const octokit = new github.GitHub(myToken);
 
