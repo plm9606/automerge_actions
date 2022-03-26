@@ -20,6 +20,6 @@
     "@actions/core": "^1.2.6",
     "@actions/github": "^2.1.1",
     "actions-toolkit": "^2.2.0",
-    "minimist": ">=1.2.3"
+    "minimist": ">=1.2.6"
   }
 }
