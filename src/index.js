@@ -25,7 +25,7 @@ async function autoMerge() {
     });
 
     const labels = pr.data.labels;
-    const hasAutomerge = labels.some((label) => label.name === labelName);
+    const hasAutomerge = labelName === "*" || labels.some((label) => label.name === labelName);
 
     if (hasAutomerge) {
       if (reviews.data.length >= +reviewersNumber) {
@@ -36,7 +36,7 @@ async function autoMerge() {
         });
         core.info(`Success Merge PR!`);
       } else throw Error("You need to get other's review!");
-    } else core.info(`You don't labeled auto merge label::"${labelName}"`);
+    } else core.info(`You didn't label this PR with auto merge label::"${labelName}"`);
 
     if (autoDelete.toUpperCase() === "TRUE") {
       core.info("The Bot will remove merged branch.");
